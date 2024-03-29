@@ -1,0 +1,36 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Date: Fri, 29 Mar 2024 14:59:02 +0000
+MD5Sum:
+ 64bcdd99cbd3510edde65ad721b3c14b              570 Packages
+ c3cad576efa3f5b66b76adc2d91f1ff4              415 Packages.gz
+ 2252932fa64dd6d7d2a413db3a586ce1               38 Release
+SHA1:
+ 7b51e065dd73fae7bdb834e4ac245d16fd56933a              570 Packages
+ 648ef2b467e8d14ae3ae011871a6de5c31d45c0e              415 Packages.gz
+ e1699c08063543bc2ce0df61fdb71ef59a3fdf7d               38 Release
+SHA256:
+ 6f298880709fc5beb46b36455322e87b28bbc72e25d74ad2355912711cc93333              570 Packages
+ 1d152001b427c8ba719526b15f2e40f274dde4a1ca4ed323e3b98140ec935e7f              415 Packages.gz
+ eec6517fee6e4fea2c4fc435eda46d7685cb16b6e06de4f92591b7d700870619               38 Release
+SHA512:
+ cca9e8b1da3ae1f40ae3b6b2e0b9deb6c716fd183a847ef367f5d0988799cd5ece5be4e7afcb43477ade8765a2c9a391531fd298a2be00e0d5006fff9c37c2b0              570 Packages
+ d8e11778a7ee11f6c88a3d0159c54197aa407957fcf122a1a36a3d63e011bf7e3dc92f5597413269d5a3f78fb44a5cd6a0bd2a24a9fdb0403f970d4329383f31              415 Packages.gz
+ c2defb0ade62b55e6a375ede57f79f5c4f8556664e56d6fa2a20870d12a6d8d5748323bf35bc7266d0c2bfad88f994815a95e442f05475053b13dfa03507aa56               38 Release
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEhyJ6MHd42ImdAeui7+jXcatzzfsFAmYG1zcACgkQ7+jXcatz
+zfsdjhAAqYmjwtHaS+nSsuo+zrNPWCLEkC14qu6cJwibyg9lgWG+TyB+nP6hjyvw
+xcAHtSKQratj27gzGDG218AFdsckWb8ptCtB8RvMKrPCuF8BWuj3qqgGgR7UH349
+1Jc7Cu2C/0vVta9dn8riiAn0jRfmCVRWc3LulmrLxhJvpjiRzK2bkYJpnRsrxkcx
+X+aAprujLeGC+kxkf54G2nwdttH6x2V2pSACRJaY7CESh+Qc8/Kwp6TUYVHmNKMP
+8XpPHgAynXHEmZ+3vlOmey6i9Crg3ZUrp4ja1QJiB5khedTYV0BY1yhwHYOOCkQt
+tzQU6s0nMCsRueBBT7pZ5KBGMDGatqaDAyeZE2YZ6QINL6u5UaxSijrTnGYJS0R5
+P+gb0QRl7dtG797HG75zlLA67vyVpzukksT4E7/gdFFT+w0cp6SRAF4oZXx+EEBC
+1ewKbYQRyGbFk2TVt7rAa6tjHGeSuDAV4YqoGZ3/PJ4768jPMgWQ+lQtoTAryCbv
+66PXbNO7p1ABLuTKF8GndCif5LR2vTxouzePrqsWfKnqXrDFEjHDR+3W402XIrsx
+5XmBIafhYgFNZEi59Hv8tBmc9FZ9RYqyMFel1Iq2ORV2DSOpAG7hrAG9eC/7MS2i
+iiey5k9Lmm7SJ2cV8fAuS1xaXR6OPN2zYRTP6NT+ebprTv4lV8M=
+=Znff
+-----END PGP SIGNATURE-----
