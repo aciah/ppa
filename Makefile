@@ -48,4 +48,9 @@ clean:
 	rm -f $(PACKAGE)-$(VERSION).tar.gz
 	rm -f $(deb_files)
 
-.PHONY: install uninstall archive package clean
+decrypt-key: key.asc
+key.asc: key.asc.gpg
+	gpg --decrypt key.asc.gpg > key.asc
+
+
+.PHONY: install uninstall archive package clean decrypt-key
