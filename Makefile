@@ -9,15 +9,15 @@ deb_files = ppa/$(PACKAGE)_$(VERSION)-1_amd64.deb \
 	    ppa/Release.gpg \
 	    ppa/InRelease
 
-install: src/scripts/lecture.sh src/scripts/save4.sh
+install: src/scripts/lecture.sh src/scripts/save.sh
 	install -D src/scripts/lecture.sh \
 		$(DESTDIR)$(prefix)/bin/aciah_lecture
-	install -D src/scripts/save4.sh \
-		$(DESTDIR)$(prefix)/bin/aciah_save4
+	install -D src/scripts/save.sh \
+		$(DESTDIR)$(prefix)/bin/aciah_save
 
 uninstall:
 	-rm -f $(DESTDIR)$(prefix)/bin/aciah_lecture \
-		$(DESTDIR)$(prefix)/bin/aciah_save4
+		$(DESTDIR)$(prefix)/bin/aciah_save
 
 archive: $(PACKAGE)-$(VERSION).tar.gz
 $(PACKAGE)-$(VERSION).tar.gz: src/scripts/lecture.sh VERSION debian/*
