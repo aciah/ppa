@@ -1,6 +1,6 @@
 #!/bin/bash
 # script facilitant l'enregistrement d'un document LibreOffice Writer.
-# le script crée le dossier A-attente
+# le script crée le dossier A-attente.
 # le document s'enregistre sous le nom a-classer.
 # on peut ensuite reprendre ce document pour modifier son nom et le déplacer.
 
