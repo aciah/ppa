@@ -2,7 +2,7 @@
 
 #!/bin/sh
 # copier
-# attention, il faut que le paquet xdotool soit installé
+# attention, il faut que le paquet xdotool soit installé.
 xdotool key "Ctrl+c"
 exit 0
 
@@ -13,6 +13,6 @@ exit 0
 
 #!/bin/sh
 # coller
-# attention, il faut que le paquet xdotool soit installé
+# attention, il faut que le paquet xdotool soit installé.
 xdotool key "Ctrl+v"
 exit 0
