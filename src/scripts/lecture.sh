@@ -43,7 +43,7 @@ readonly Speed_pas="20"
 readonly Pitch_min="0"
 readonly Pitch_def="50"
 readonly Pitch_max="99"
-readonly Pitch_pas="5"
+readonly Pitch_pas="6"
 
 ####	Volume sonore minimum, defaut, maximum et pas
 readonly Amp_min="10"
