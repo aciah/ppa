@@ -1,6 +1,6 @@
 # ﻿#!/bin/sh
 # VERSION 1.0
-# AUTHOR  Jean-Yves ROCHER
+# AUTEUR  Jean-Yves ROCHER
 # Modifications : ACIAH et Pierre Estrem, décembre 2022
 # NAME : Lire et obtenir le texte
 # DESCRIPTION : Script permettant la lecture en direct de fichiers images jpg, png, tif, pdf, doc, docx et html. Le script donne aussi le texte en .txt dans le dossier d'origine.
