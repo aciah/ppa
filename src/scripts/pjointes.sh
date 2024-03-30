@@ -1,6 +1,6 @@
 #!/bin/bash
-#enregistrer les pièces jointes d'un message Thunderbird
-#nécessite cd'avoir installé espeak et xdotool
+# enregistrer les pièces jointes d'un message Thunderbird
+# nécessite cd'avoir installé espeak et xdotool
 
 amixer -q  -D pulse sset Master toggle # on coupe le haut-parleur mais on garde espeak
 sleep 1
