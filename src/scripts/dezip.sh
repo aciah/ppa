@@ -1,5 +1,5 @@
 #!/bin/bash
-# script pour décompresser une archive
+# script pour décompresser une archive.
 # on peut régler le clavier pour lancer ce script avec la touche F10.
 
 aplay /usr/local/share/advl/beep.wav
