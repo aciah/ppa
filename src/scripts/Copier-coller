@@ -1,1 +1,18 @@
+# Script nommé : copier.sh
 
+#!/bin/sh
+# copier
+# attention, il faut que le paquet xdotool soit installé
+xdotool key "Ctrl+c"
+exit 0
+
+
+
+
+# Script nommé : coller.sh
+
+#!/bin/sh
+# coller
+# attention, il faut que le paquet xdotool soit installé
+xdotool key "Ctrl+v"
+exit 0
