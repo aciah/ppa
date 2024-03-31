@@ -1,4 +1,4 @@
-########## Aciah-mint-19 ##########
+########## Aciah-Mint-19 ##########
 
 Aciah-Mint-19 est basée sur Linux-Mint 19, c’est un modèle un peu ancien à réserver aux ordinateurs en Legacy i686, 32 bits. Il y a le lecteur d’écran Orca, et trois scripts-magiques : F7, F10 et F12.
 
@@ -13,8 +13,8 @@ Ce n'est pas une iso. C'est une img qui donne un système prêt à l'emploi avec
 
 
 
-##########    ##########
+##########  Mise à jour   ##########
 
+Nous sommes actuellement à Aciah-Mint-21.3
 
-
-Les versions plus anciennes spnt ici : https://aciah-linux.org/spip.php?article260
+Les versions plus anciennes sont ici : https://aciah-linux.org/spip.php?article260
