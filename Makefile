@@ -9,18 +9,18 @@ deb_files = ppa/$(PACKAGE)_$(VERSION)-1_amd64.deb \
 	    ppa/Release.gpg \
 	    ppa/InRelease
 
-install: src/scripts/lecture.sh src/scripts/save.sh
-	install -D src/scripts/lecture.sh \
-		$(DESTDIR)$(prefix)/bin/aciah_lecture
-	install -D src/scripts/save.sh \
-		$(DESTDIR)$(prefix)/bin/aciah_save
+SCRIPTS := $(wildcard src/scripts/*.sh)
+TARGETS := $(patsubst src/scripts/%.sh,$(DESTDIR)$(prefix)/bin/aciah_%,$(SCRIPTS))
+
+install: $(TARGETS)
+$(DESTDIR)$(prefix)/bin/aciah_%: src/scripts/%.sh
+	install -D $< $@
 
 uninstall:
-	-rm -f $(DESTDIR)$(prefix)/bin/aciah_lecture \
-		$(DESTDIR)$(prefix)/bin/aciah_save
+	-rm -f $(TARGETS)
 
 archive: $(PACKAGE)-$(VERSION).tar.gz
-$(PACKAGE)-$(VERSION).tar.gz: src/scripts/lecture.sh VERSION debian/*
+$(PACKAGE)-$(VERSION).tar.gz: src/scripts/*.sh VERSION debian/* Makefile
 	# Create temporary directory
 	mkdir -p /tmp/$(PACKAGE)-$(VERSION)
 	cp -r ./* /tmp/$(PACKAGE)-$(VERSION)
