@@ -1,3 +1,9 @@
+aciah (0.2.0-1) UNRELEASED; urgency=low
+  * Add missing dependencies
+  * Generalize Makefile
+
+ -- Max <aciah.brisket506@simplelogin.com>  Fri, 12 Apr 2024 15:50:06+0000
+
 aciah (0.1.0-1) UNRELEASED; urgency=low
 
   * Initial release.
