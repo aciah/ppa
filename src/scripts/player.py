@@ -1,7 +1,10 @@
+Ce script permet la lecture par espeak d'un document .txt en adaptant la lecture à la personne qui entend
+le texte : notamment la vitesse de lecture.
+
 #!/usr/bin/python3
 # Auteur : Pierre Estrem février 2024
 # script pour lire à haute voix les documents txt obtenus avec le script A-lire-et-obtenir-le-texte
-# nécessite le fichier help.txt - voir ligne 43
+# nécessite le fichier help.txt - voir ligne 46 et la ligne 332.
 """
 Lecteur de fichier texte avec les fonctions :
 	- lecture accélérée (Flèche HAUT)
