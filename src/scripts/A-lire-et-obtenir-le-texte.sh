@@ -1,13 +1,18 @@
+Lorsqu'on scanne un document, par exemple une lettre administrative, on obtient un document image jpg ou un pdf-image 
+qu'on ne peut faire lire par un lecteur d'écran, qu'on ne peut pas modifier. Le script ci-dessous transforme les documents
+en fichiers textes .txt et lance la lecture par espeak. Il fournit aussi le texte, permettant de réutiliser ce texte. 
+La reconnaissaince OCR par Tesseract donne d'assez bons résultats.
+
 # ﻿#!/bin/sh
 # VERSION 2.0
-# AUTHOR  Jean-Yves ROCHER
+# AUTEUR  Jean-Yves ROCHER
 # Modifications : ACIAH et Pierre Estrem, avril 2024
 # NAME : Lecture à la volée
-# DESCRIPTION : Script permettant la lecture endirect de fichiers images jpg, png, tif, pdf, doc, docx.
-# Dépendances : espeak, unoconv, pandoc, player.py etnotre script conv-txt.sh
+# DESCRIPTION : Script permettant la lecture en direct de fichiers images jpg, png, tif, pdf, doc, docx, odt.
+# Dépendances : espeak, unoconv, pandoc, player.py et notre script conv-txt.sh
 # Décommenter les deux lignes suivantes pour récupérer les log du script et les afficher en direct dans un terminal
-#exec 1>>/var/log/aciah/lireALaVolee.log 2>>/var/log/aciah/lireALaVolee.log
-#xterm -e "tail -f /var/log/aciah/lireALaVolee.log" &
+# exec 1>>/var/log/aciah/lireALaVolee.log 2>>/var/log/aciah/lireALaVolee.log
+# xterm -e "tail -f /var/log/aciah/lireALaVolee.log" &
 
  FICHIER=`basename $1`
  FILE=`basename ${FICHIER%.*}`
