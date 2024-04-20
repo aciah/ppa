@@ -1,10 +1,16 @@
+Ce script permet de lancer un scan de façon simplifiée. Pour nous : on lance le menu et on frappe la touche S.
+L'opération fournit un document en jpg ET le même document en pdf ET le même document en fichier-texte.
+L'ordinateur lit tout haut le document-texte en utilisant le script player.py. C'est intéressant pour 
+une personne aveugle.
+
+
 #!/bin/bash
-# auteur : association AXCIAH - mars 2024
+# auteur : association ACIAH - mars 2024
 # Licence : GPL v3
 # Fonction : Scanner et Reconnaître - Mousepad
 # Maintenance : <aciah@laposte.net>
 # Shell : bash
-# Nécessite les paquets espeak , scanimage, tesseract, player.py
+# Nécessite les paquets espeak , scanimage, tesseract, et le script player.py
 
 aplay /usr/local/share/advl/beep.wav
 
