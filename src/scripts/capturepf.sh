@@ -2,9 +2,9 @@
 # requiert zenity, curl et scrot
 # capture d'écran améliorée, envoie l'image à Photofiltre, Gimp ou Dessin.
 # auteur : thuban@yeuxdelibad.net
-# penser à bien contrôler les adresses aux lignes 18 - 21 et 24 ci-dessous
-IMAGE=~/capt-$(date +%d-%H-%M).png  #on envoie la capture à la racine
+# penser à bien contrôler les adresses aux lignes 18 - 21 et 24 ci-dessous.
 
+IMAGE=~/capt-$(date +%d-%H-%M).png  #on envoie la capture à la racine
 
 R=$(zenity --list --height=225 --text "Capture d'écran"\
     --radiolist --column "" --column "Capturer..." --print-column=2 \
