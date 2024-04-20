@@ -1,3 +1,187 @@
-C'est l'utilisation d'une ressource trouvée sur internet :
+C'est l'utilisation d'une ressource trouvée sur internet : https://sites.google.com/site/jvinla/mygtkmenu
 Cela permet de créer un 'menu' que nous avons appelé "Aciah-Menu" et que nous lançons avec Alt + AltGr ou avec Win+M.
 Il permet de lancer les programmes que l'on souhaite sans utiliser des icônes.
+Il s'appuie sur un fichier-texte paramétrable à l'envi.
+Voici ce fichier-texte pour nous.
+
+# TestMenu.txt
+# Fichier de configuration par défaut pour le menu "ACIAH-menu"
+# Usage:  Fichier-de-configuration.txt
+#
+# Des mots clés sont utilisés pour définir une entrée dans le menu. Et la règle étant un seul mot clé par ligne.
+# les 7 mots clés sont:
+#
+# "menupos=" -> définit la position où sera affiché sur l'écran le menu. Cette possibilitié est optionnelle. Ne pas
+# la définir ouvre le menu à l'emplacement de la souris ou du dernier focus.
+#
+# "item=" -> définit le nom d'une entrée dans le menu. Il doit être suivi du mot clé "cmd=". 
+# L'utilisation d'un underscore ("_") devant une lettre, définit le raccourci pour l'entrée.
+#
+# "cmd=" -> définit la commande à exécuter. Il doit être suivi du mot clé "icon=".
+#
+# "icon=" -> définit l'icone associée à l'entrée "item=".
+#
+# "SEPARATOR" -> Ajoute une ligne de séparation entre deux items
+#
+# "submenu=" - > Définit un sous-menu. Celui-ci doit être suivi d'une ligne dite indentée 
+# (ce qui veut dire décalée vers la droite en utilisant la Touche TAB) avec le mot clé "icon". Toutes les entrées 
+# (item) du sous-menu doivent être sur une ligne indentée.
+#
+# "iconsize=" -> Définit la taille des icônes (pour toutes les icônes...)
+#
+#      ............... Début du menu simplifié pour le Aciah-Menu...............
+
+MenuPosition = 40 1 # Optional
+
+iconsize = 25
+
+item = Aciah-Menu
+cmd = " "
+icon =
+
+SEPARATOR
+SEPARATOR
+SEPARATOR
+
+item = Explications Touche _x
+cmd = /usr/local/bin/player.py /usr/local/share/advl/explications.txt
+icon = 
+
+item = _Lire mes messages, Touche _L
+cmd = sh /usr/local/bin/lire-messages.sh
+icon = /usr/share/pixmaps/evolution.png
+
+item = _Ecrire un courriel, un mail. Touche _E
+cmd = thunderbird mailto:
+icon = 
+
+item = Pièces jointes. Touche _J
+cmd = sh /usr/local/bin/pjointes.sh
+icon =
+
+item = Annuaires
+cmd = firefox https://aciah-linux.org/annuaires.html
+icon = 
+
+SEPARATOR
+SEPARATOR
+SEPARATOR
+
+item = _Internet, Touche _i
+cmd = sh /usr/local/bin/firefox.sh
+icon = /usr/share/pixmaps/webbrowser-app.png
+
+item = Le Localisateur. Touche _U.
+cmd = firefox http://localisateur.org
+icon = 
+
+item = Dicter un texte. Touche _D.
+cmd = google-chrome-stable https://www.textfromtospeech.com/fr/voice-to-text/
+icon = 
+
+item = Petite loupe non cliquable - ou CTRL + Espace
+cmd = vmg
+icon = 
+
+SEPARATOR
+SEPARATOR
+SEPARATOR
+
+item = Dossier personnel ou Touche _C
+cmd = caja /home/aciah/
+icon = /usr/share/pixmaps/C.png
+
+item = Appareils branchés
+cmd = caja /media/aciah/
+icon = 
+
+item = Corbeille
+cmd = caja trash:///
+icon = 
+
+SEPARATOR
+SEPARATOR
+SEPARATOR
+
+item = Ecrire un texte - _Traitement de texte - Libre-Office. Touche _T.
+cmd = /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=libreoffice --file-forwarding org.libreoffice.LibreOffice --writer @@u
+icon = /usr/share/pixmaps/libreoffice-writer.png
+
+item = Enregistrer sous. Touche _A
+cmd = sh /usr/local/bin/save.sh
+icon = 
+
+item = Editeur de texte mousepad
+cmd = mousepad
+icon = 
+
+item = Créer une feuille de calculs
+cmd = libreoffice7.6  --calc
+icon = 
+
+item = Mon agenda
+cmd = libreoffice7.6 --calc /home/aciah/.config/outils/agenda
+icon =
+
+SEPARATOR
+SEPARATOR
+SEPARATOR
+
+item = Activer/Désactiver le lecteur d'écran _ORCA. Touche _O.
+cmd = sh /home/aciah/.config/orca/scripts/orca-switch.sh
+icon = /usr/share/pixmaps/barrouge.jpg
+
+item = _Réparer le lecteur d'écran ORCA. Touche _R.
+cmd = sh /home/aciah/.config/orca/scripts/restaurer-orca.sh
+icon = /usr/share/pixmaps/orca.png
+
+SEPARATOR
+SEPARATOR
+SEPARATOR
+
+item = Eole, connexion
+cmd = firefox http://eole.avh.asso.fr/user/login?destination=/
+icon = /usr/share/pixmaps/orca.png
+
+item = Eole, recherche par titre ou auteur
+cmd = firefox http://eole.avh.asso.fr/moteur-de-recherche/audio/advanced
+icon =
+
+item = Eole, recherche par thème
+cmd = firefox http://eole.avh.asso.fr/node/63852#content
+icon =
+
+item = Télécharger sur les bibliothèques sonores
+cmd = firefox https://lesbibliothequessonores.org
+icon =
+
+SEPARATOR
+SEPARATOR
+
+item = Alsamixer, modifier le volume. Touche _V.
+cmd = x-terminal-emulator -e alsamixer
+icon = 
+
+item = Se connecter en _Wifi. Touche _W.
+cmd = x-terminal-emulator -e /usr/bin/wifi-ch.sh
+icon = 
+
+item = _Scanner-numériser et lire le texte. Touche _S
+cmd = sh /home/aciah/.local/scripts/scanner.sh
+icon = /usr/share/pixmaps/scanner.png
+
+item = Eteindre en faisant : WIN + Q   ou Touche _Q.
+cmd = sh /usr/bin/menu-deconnexion.sh
+icon = /usr/share/pixmaps/gnome-shutdown3.png
+
+item = I_nversion des couleurs - CTRL + WIN + ALT + I
+cmd = xcalib -i -a
+icon = /usr/share/pixmaps/invert_color.png
+
+item = Menu Whisker pour trouver tous les programmes ou WIN + L .
+cmd = x-terminal-emulator -e xfce4-popup-whiskermenu
+icon = /usr/share/pixmaps/xfce4-whiskermenu.png
+
+	
+	
+
