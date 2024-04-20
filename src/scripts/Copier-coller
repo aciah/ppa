@@ -1,3 +1,5 @@
+Deux petits scripts permettant de créer des icônes "Copier" et "Coller" sur le bureau.
+
 # Script nommé : copier.sh
 
 #!/bin/sh
