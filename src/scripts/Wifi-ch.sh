@@ -1,9 +1,9 @@
 Script permettant de lancer une connexion wifi ou éthernet, au clavier et vocalisée si on a un lecteur d'écran.
 
 #!/bin/bash
-# Aide à la connexion Wi-Fi
+# Aide à la connexion 
 # Version v1.0
-# Auteur : Équipe Aciah et Chrisophe L.
+# Auteur : Équipe Aciah et Christophe L.
 # Licence GPL V3
 
 export LC_ALL=C # Pourquoi cette commande, tout simplement pour la rendre universelle vis à vis de la langue du système
