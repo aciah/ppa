@@ -1,1 +1,35 @@
+La synthèse vocale (ou TTS, pour Text To Speech) consiste à transformer un texte en suite de sons se rapprochant autant que possible de la parole humaine. 
+La synthèse vocale procède en trois temps :
+-*     transformation du texte en phonèmes ;
+-*     Prosodie (ajout d'informations de prononciation : accents toniques, indication de durée, etc.) ;
+-*     assembler des sons pré-enregistrés en suivant les règles établies par les deux premières étapes.
 
+Espeak est un logiciel de synthèse vocale, il a une voix plutôt robotique qui peut être améliorée en utilisant les voix MBROLA.
+Le script stopmbrola permet d’arrêter la lecture à la volée.  Voici ce script :
+
+#! /bin/bash
+# VERSION :     2.0
+# AUTHOR:	(c) Christophe L. pour Aciah - 2016
+# Fonction : stopper Mbrola
+# Shell : bash
+# LICENSE:      GNU GPL v3 (http://www.gnu.org/licenses/gpl.html)
+# 
+##### test pour savoir si la lecture est en route #####
+if [ -n "$(ps -A | grep mbrola)" ] ; then
+	killall -KILL mbrola && sleep 2
+fi
+
+exit 0
+
+
+
+Remarque : quand on lance "espeak" il est préférable de stopper Orca qui pollue l’écoute. Mais si on le fait, on entend toujours en préambule "... activé" ou "... désactivé".
+On peut faire autrement : suspendre le processus Orca et reprendre le processus Orca.
+
+    La ligne dessous suspend Orca sans pollution :
+    kill -STOP $(pgrep orca)
+    
+La ligne dessous redémarre Orca sans pollution :
+    kill -CONT $(pgrep orca)
+
+On peut mettre ces lignes à bon escient dans des scripts bash pour couper le caquet de Orca avant d’exécuter une instance de espeak.
