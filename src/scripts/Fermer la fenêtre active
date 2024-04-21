@@ -1,1 +1,11 @@
+C’est habituellement avec le raccourci : Alt + F4 que l’on ferme une fenêtre. 
+Mais on peut avoir envie d’affecter ce raccourci à une seule touche du clavier, par exemple F4
+On utilise le script :ferme-fenetre.sh :
+
+# !/bin/bash
+# ferme la fenêtre active
+# nécessite d’avoir installé les outils : xdotool et espeak
+xdotool getwindowfocus windowkill
+espeak -a 200 -v mb-fr1 -s 150 "fenêtre fermée"
+exit 0
 
