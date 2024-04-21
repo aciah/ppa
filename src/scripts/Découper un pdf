@@ -7,7 +7,7 @@ Mais ce n'est pas toujours facile pour un internaute aveugle. D'où l'utiloté d
 # TITRE:        PDFsplit ou PDF-decoupe
 # VERSION:      0.3
 # LICENSE:      GNU GPL v3 (http://www.gnu.org/licenses/gpl.html)
-# Rôle : un moyen pour découper un fichier pdf en plusieurs pages
+# Rôle : un moyen pour découper un fichier pdf en plusieurs pages pdf.
 # Dépendances : il faut installer pdftk - sudo apt install pdftk
 
 Document="$1"
