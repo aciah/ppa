@@ -1,1 +1,13 @@
+#!/bin/bash
+# AUTEUR:       CL et association Aciah - mars 2023
+# TITRE:        PDFsplit ou PDF-decoupe
+# VERSION:      0.3
+# LICENSE:      GNU GPL v3 (http://www.gnu.org/licenses/gpl.html)
+# Rôle : un moyen pour découper un fichier pdf en plusieurs pages
+# Dépendances : il faut installer pdftk - sudo apt install pdftk
 
+Document="$1"
+
+pdftk   "$Document" burst output "${Document%.pdf}-page%d.pdf"
+
+exit 0 
