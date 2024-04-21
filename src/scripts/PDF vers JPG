@@ -8,8 +8,8 @@ Voici le script F-conversion-en-jpg.sh
 # AUTEUR:	(c) Christophe L. Pour Aciah.
 # DESCRIPTION:	Script pour convertir des fichiers PDF en fichiers JPG avec une résolution de 300 dpi
 # Tous les fichiers IMAGE (par ex. bmp, jpg, png) et TXT ainsi que les fichiers PDF sont convertis en fichiers JPG individuels, 
-# tandis que certains fichiers document (par ex. doc, odt) sont convertis en fichiers PDF individuels 
-# et enregistrés dans un sous-dossier nommé "_dirname".
+# dans le même dossier que le fichier d'origine.
+# 
 # Dépendances : il faut avoir "imagemagick" package  et modifier le fichier /etc/ImageMagick-*/policy.xml 
 #
 OLDIFS=$IFS
@@ -23,9 +23,7 @@ IFS=$OLDIFS
 
 Ainsi, si on a le fichier document.pdf de trois pages, on obtient trois fichiers jpg nommés : document-0.jpg , document-1.jpg et document-2.jpg
 
-Il est parfois nécessaire de convertir les fichiers PDF en JPG. On obtient un document_numerise.jpg qui est classé dans le même dossier que le précédent.
-Et si le document pdf fait plusieurs pages on obtient une image jpg pour chacune des pages.
-Nous vous proposons [F-conversion-en-jpg.sh->https://aciah-linux.org/scripts-aciah/F-conversion-en-jpg.sh] qui se trouve dans /home/aciah/scripts
+################
 
 Ce script fonctionne mais il faut, avant, modifier une ou deux lignes dans le fichier  : /etc/ImageMagick-*/policy.xml   
 pour que l'on ait :
