@@ -1,3 +1,7 @@
+Bien sûr, on peut découper un document pdf en ligne, par exemple en utilisant le site : https://ilovepdf.com
+Mais ce n'est pas toujours facile pour un internaute aveugle. D'où l'utiloté du script ci-dessus qu'on peut lancer en ligne de commande.
+
+
 #!/bin/bash
 # AUTEUR:       CL et association Aciah - mars 2023
 # TITRE:        PDFsplit ou PDF-decoupe
