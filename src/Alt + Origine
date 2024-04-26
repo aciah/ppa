@@ -1,1 +1,20 @@
+#!/bin/bash
+# script pour faire : Alt + Origine, en lui affectant une seule touche du clavier
+# nécessite le paquet : xdotool
+# licence GPL v3
+# auteur : association Aciah - avril 2024
 
+sleep 0.5 && xdotool key Alt+Home
+exit 0
+
+
+
+
+
+
+
+
+# Quand on se trouve dans le gestionnaire de fichiers, on a souvent besoin de revenir à la racine de l’arborescence. 
+# On peut le faire avec le raccourci : Alt + Origine. 
+# Mais nous proposons de le faire avec une seule touche, celle qui s’appelle ’Page Haut’ ou ’Page Up’ , si on ne s’en sert pas souvent. 
+# Pour cela nous avons créé le script ci-dessus, nommé : alt-home.sh
