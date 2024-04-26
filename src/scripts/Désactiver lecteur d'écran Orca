@@ -10,5 +10,23 @@ exit 0
 
 # Le lecteur d'écran est fatigant, on a souvent besoin de le faire taire un peu. 
 # Mais si on stoppe le lecteur d'écran, il y a un temps d'attente pour le relancer. 
-# Le mieux est de le désactiver provisoirement. Cela peut se faire avec le raccourci : insert +s . Mais nous proposons de le faire avec une seule touche, celle qui s'appelle 'Arret Défil' , si on ne s'en sert pas souvent. 
-# Pour cela nous avons créé le script ci-dessus.
+# Le mieux est de le désactiver provisoirement. Cela peut se faire avec le raccourci : insert +s . 
+# Mais nous proposons de le faire avec une seule touche, celle qui s'appelle 'Arret Défil' , si on ne s'en sert pas souvent. 
+# Pour cela nous avons créé le script ci-dessus nommé : desactiv-orca.sh
+
+
+
+Créer ce raccourci : la méthode ci-dessous correspond à la distribution Linux-Mint xfce, donc aussi à Aciah-Linux.
+
+1 – Ouvrir le menu Whisker en faisant : {{MAJ + WIN + F1}} ou {{Win + L}}
+2 – Saisir le mot : {{clavier}},  et valider avec {{Entrée}}. On arrive à une nouvelle fenêtre.
+3 – {{Flèche-Droite}} une fois pour arriver à : {{raccourcis d’applications.}}
+4 –{{TAB}}uler jusqu’au bouton : ajouter . Ou bien faire : {{ALT + J}}.
+5 – On arrive à une zone de saisie et on entend : entrez la commande.
+	Entrer alors cette commande : sh /usr/local/bin/desactiv-orca.sh
+	et valider avec : {{ALT + V}}
+6 – Ensuite on n’entend rien mais il faut quand même appuyer sur les touches du clavier qu'on veut utiliser.
+7 – Appuyer ici sur la touche 'Arret Défil'. La manipulation est enregistrée.
+8 – Fermer avec {{ALT + F4}}.
+
+Mais, il faut le redire, attention à ne pas entrer en conflit avec un raccourci déjà existant !
