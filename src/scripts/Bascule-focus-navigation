@@ -1,1 +1,17 @@
+#!/bin/bash
+# script pour faire la bascule entre mode focus et mode navigation, en lui affectant une seule touche du clavier
+# nécessite le paquet : xdotool
+# licence GPL v3
+# auteur : association Aciah - avril 2024
+
+sleep 0.5 && xdotool key Insert+a
+exit 0
+
+
+
+# Lorsque le lecteur d'écran est actif, et que l'on arrive dans une zone de saisie, 
+# on ne peut écrire dans cette zone que si on entend : mode focus.  
+# On peut basculer entre mode focus et mode navigation avec le raccourci : Insert + a.  
+# Mais nous proposons de le faire avec une seule touche, celle qui s'appelle 'Page Bas' ou 'Page Down' , si on ne s'en sert pas souvent. 
+# Pour cela nous avons créé le script ci-dessus nommé : bascule-focus-nav.sh
 
