@@ -1,4 +1,4 @@
-#!/bin/bash
+bin/bash
 # script pour faire : Alt + Origine, en lui affectant une seule touche du clavier
 # nécessite le paquet : xdotool
 # licence GPL v3
@@ -9,12 +9,23 @@ exit 0
 
 
 
-
-
-
-
-
 # Quand on se trouve dans le gestionnaire de fichiers, on a souvent besoin de revenir à la racine de l’arborescence. 
 # On peut le faire avec le raccourci : Alt + Origine. 
 # Mais nous proposons de le faire avec une seule touche, celle qui s’appelle ’Page Haut’ ou ’Page Up’ , si on ne s’en sert pas souvent. 
-# Pour cela nous avons créé le script ci-dessus, nommé : alt-home.sh
+# Pour cela nous avons créé le script ci-dessus, nommé : alt-home.sh que nous avons enregistré dans /usr/local/bin.
+
+
+Créer ce raccourci : la méthode ci-dessous correspond à la distribution Linux-Mint xfce, donc aussi à Aciah-Linux.
+
+1 – Ouvrir le menu Whisker en faisant : {{MAJ + WIN + F1}} ou {{Win + L}}
+2 – Saisir le mot : {{clavier}},  et valider avec {{Entrée}}. On arrive à une nouvelle fenêtre.
+3 – {{Flèche-Droite}} une fois pour arriver à : {{raccourcis d’applications.}}
+4 –{{TAB}}uler jusqu’au bouton : ajouter . Ou bien faire : {{ALT + J}}.
+5 – On arrive à une zone de saisie et on entend : entrez la commande.
+	Entrer alors cette commande : sh /usr/local/bin/alt-home.sh
+	et valider avec : {{ALT + V}}
+6 – Ensuite on n’entend rien mais il faut quand même appuyer sur les touches du clavier qu'on veut utiliser.
+7 – Appuyer ici sur la touche 'Page Haut'. La manipulation est enregistrée.
+8 – Fermer avec {{ALT + F4}}.
+
+Mais, il faut le redire, attention à ne pas entrer en conflit avec un raccourci déjà existant !
