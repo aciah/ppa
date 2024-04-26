@@ -1,1 +1,14 @@
-Désactiver lecteur
+#!/bin/bash
+# script pour désactiver le lecteur d'écran Orca, en lui affectant une seule touche du clavier
+# nécessite le paque : xdotool
+# licence GPL v3
+# auteur : association Aciah - avril 2024
+
+sleep 0.5 && xdotool key Insert+s
+exit 0
+
+
+# Le lecteur d'écran est fatigant, on a souvent besoin de le faire taire un peu. 
+# Mais si on stoppe le lecteur d'écran, il y a un temps d'attente pour le relancer. 
+# Le mieux est de le désactiver provisoirement. Cela peut se faire avec le raccourci : insert +s . Mais nous proposons de le faire avec une seule touche, celle qui s'appelle 'Arret Défil' , si on ne s'en sert pas souvent. 
+# Pour cela nous avons créé le script ci-dessus.
