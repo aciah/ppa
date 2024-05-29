@@ -1,3 +1,4 @@
+version janvier 2024 - voir nouvelle version le 29 mai 2024
 Lorsqu'on scanne un document, par exemple une lettre administrative, on obtient un document image jpg ou un pdf-image 
 qu'on ne peut faire lire par un lecteur d'écran, qu'on ne peut pas modifier. Le script ci-dessous transforme les documents
 en fichiers textes .txt et lance la lecture par espeak. Il fournit aussi le texte, permettant de réutiliser ce texte. 
