@@ -1,7 +1,13 @@
 Lorsqu'on scanne un document, par exemple une lettre administrative, on obtient un document image jpg ou un pdf-image 
 qu'on ne peut faire lire par un lecteur d'écran, qu'on ne peut pas modifier. Le script ci-dessous transforme les documents
 en fichiers textes .txt et lance la lecture par espeak. Il fournit aussi le texte, permettant de réutiliser ce texte. 
-La reconnaissaince OCR par Tesseract donne d'assez bons résultats. On peut régler le clavier pour lancer ce script avec la touche F8.
+La reconnaissaince OCR par Tesseract donne d'assez bons résultats. 
+
+En particulier, il peut traiter les fichiers dont le nom comporte une espace. 
+Il fait la reconnaissance des caractères des fichiers : png, jp, tif, doc, docs, txt, pdf, odt, y compris pour des fichiers de plusieurs pages, 
+y compris pour des diaporamas enregistrés au format pdf.
+
+On peut régler le clavier pour lancer ce script avec la touche F8.
 
 #!/bin/bash
 
@@ -10,7 +16,7 @@ La reconnaissaince OCR par Tesseract donne d'assez bons résultats. On peut rég
 # Licence : GPL V3
 # Modifications : association ACIAH et Pierre Estrem avril 2024, Gérard Ruau (membre association ACIAH) 13/05/2024
 # NAME : Lecture à la volée
-# DESCRIPTION : Script permettant la lecture endirect de fichiers images jpg, png, tif, pdf, doc, docx, txt.
+# DESCRIPTION : Script permettant la lecture en direct de fichiers images jpg, png, tif, pdf, doc, docx, txt.
 # Dépendances : espeak, unoconv, pandoc, player.py et notre script conv-txt.sh
 #               !!!! unoconv génere une alerte car il est déprécié par Python et sera supprimé dans la version 3.12 !!!!
 # RACCOURCIS : ce script est placé dans le dossier $HOME/.config/caja/scripts
