@@ -1,0 +1,167 @@
+Lorsqu'on scanne un document, par exemple une lettre administrative, on obtient un document image jpg ou un pdf-image 
+qu'on ne peut faire lire par un lecteur d'écran, qu'on ne peut pas modifier. Le script ci-dessous transforme les documents
+en fichiers textes .txt et lance la lecture par espeak. Il fournit aussi le texte, permettant de réutiliser ce texte. 
+La reconnaissaince OCR par Tesseract donne d'assez bons résultats. On peut régler le clavier pour lancer ce script avec la touche F8.
+
+#!/bin/bash
+
+# VERSION 2.2
+# AUTHOR  Jean-Yves ROCHER
+# Licence : GPL V3
+# Modifications : association ACIAH et Pierre Estrem avril 2024, Gérard Ruau (membre association ACIAH) 13/05/2024
+# NAME : Lecture à la volée
+# DESCRIPTION : Script permettant la lecture endirect de fichiers images jpg, png, tif, pdf, doc, docx, txt.
+# Dépendances : espeak, unoconv, pandoc, player.py et notre script conv-txt.sh
+#               !!!! unoconv génere une alerte car il est déprécié par Python et sera supprimé dans la version 3.12 !!!!
+# RACCOURCIS : ce script est placé dans le dossier $HOME/.config/caja/scripts
+# et est appelé par le raccourci : F8
+
+# Décommenter les deux lignes suivantes pour récupérer les log du script et les afficher en direct dans un terminal
+#    exec 1>>/var/log/aciah/lireALaVolee.log 2>>/var/log/aciah/lireALaVolee.log
+#    xterm -e "tail -f /var/log/aciah/lireALaVolee.log" &
+ 
+#### Arrêt de la synthèse vocale Orca et le script se poursuit
+killall orca &
+sleep 3
+killall -9 speech-dispatcher &
+
+
+#### Gestion des fichiers avec ou sans espaces ####
+
+# Nom de fichier source avec ou sans espaces
+    FILEORIGIN=$1
+# Nom de fichier forcément sans espaces, le double / c'est pour qu'il fasse tous les remplacements, pas juste le premier
+    FILENOSPACE=${FILEORIGIN// /-}
+# S'il y'a une différence c'est qu'il y a un ou plusieurs espaces dans le nom du fichier
+    if [ "FILEORIGIN" != "$FILENOSPACE" ]
+        then
+# On effectue le renommage en supprimant les espaces par des tirets (-)
+            rename -d -v 's/\s/-/g' "$FILEORIGIN"
+# On réaffecte la valeur non espacée
+            FILEORIGIN=$FILENOSPACE
+        else
+            sleep 1
+    fi
+
+
+#### Attribution des différentes variables utilisées dans ce script
+FICHIER=`basename $FILEORIGIN`
+FILE=`basename ${FICHIER%.*}`
+CHEMIN=`dirname $FILEORIGIN`
+REPLECTURE="$HOME"/Machine-a-lire
+TYPE=`mimetype -i -b $FILEORIGIN`
+
+
+#### Si le dossier $HOME/Machine-a-lire n'existe pas, on le crée
+    if [ ! -d $HOME/Machine-a-lire ]
+        then
+            mkdir $HOME/Machine-a-lire
+    fi
+  
+aplay /usr/local/share/advl/beep.wav
+
+
+#### Détermination de l'extension du fichier
+FILE_PATH="$FILEORIGIN"
+FILENAME="$(basename $FILE_PATH)"
+EXTENSION="${FILENAME##*.}"
+
+#### Extraction des fichiers en fonction des extensions, conversion et lecture
+    if [ ! -z $EXTENSION ]
+        then
+            case $EXTENSION in
+
+                ######## Conversion et lecture du fichier de type odt #######
+                ######## !!!! unoconv génere une alerte car il est déprécié par Python et sera supprimé dans la version 3.12 !!!! ########
+                odt)
+                    espeak -a 200 -v mb-fr1 -s 130 "patientez"
+                    unoconv --format=txt -o "$REPLECTURE"/"$FILE"/"${FILENAME%\.*}.txt" "$CHEMIN"/"$FICHIER" &&
+                    cp "$REPLECTURE"/"$FILE"/"${FILENAME%\.*}.txt" "$CHEMIN"/"${FILENAME%\.*}.txt" &&
+                    x-terminal-emulator -e /usr/local/bin/player.py "$REPLECTURE"/"$FILE"/"${FILENAME%\.*}.txt" &&
+                    espeak -a 200 -v mb-fr1 -s 130 "lecture terminée"
+                    rm -r "$REPLECTURE"/*
+                ;;
+
+                ######## Conversion et lecture du fichier de type pdf #######
+                pdf)
+                    espeak -a 200 -v mb-fr1 -s 130 "patientez"
+                    # Conversion de PDF en images, une image par page
+                    mkdir "$REPLECTURE"/"$FILE"
+                    pdftoppm -r 200 -tiff "$CHEMIN"/"$FICHIER" "$REPLECTURE"/"$FILE"/"${FILENAME%\.*}_page" &&
+                    espeak -a 200 -v mb-fr1 -s 130 "patientez, celà peut durer plusieurs minutes"
+                    # OCR pour chaque page et transformation de chaque image en un fichier txt
+                        for PAGE in "$REPLECTURE"/"$FILE"/*.tif
+                            do
+                                tesseract --tessdata-dir /usr/share/tesseract-ocr/4.00/tessdata/ "$PAGE" "${PAGE%.*}" -l fra
+                            done
+                    # Fusion des fichiers texte
+                    espeak -a 200 -v mb-fr1 -s 130 "patientez"
+                    cat "$REPLECTURE"/"$FILE"/"${FILENAME%\.*}_page"*".txt" > "$REPLECTURE"/"$FILE"/"${FILENAME%\.*}.txt" &&
+                    cp "$REPLECTURE"/"$FILE"/"${FILENAME%\.*}.txt" "$CHEMIN"/"${FILENAME%\.*}.txt" &&
+                    # Lecture du fichier
+                    x-terminal-emulator -e /usr/local/bin/player.py "$REPLECTURE"/"$FILE"/"${FILENAME%\.*}.txt" &&
+                    espeak -a 200 -v mb-fr1 -s 130 "lecture terminée"
+                    rm -r "$REPLECTURE"/*
+                ;;
+
+                ######## Conversion et lecture du fichier de type docx #######
+                docx)
+                    espeak -a 200 -v mb-fr1 -s 130 "patientez"
+                    mkdir "$REPLECTURE"/"$FILE"
+                    pandoc "$CHEMIN"/"$FICHIER" -o "$REPLECTURE"/"$FILE"/"${FILENAME%\.*}.txt" &&
+                    cp "$REPLECTURE"/"$FILE"/"${FILENAME%\.*}.txt" "$CHEMIN"/"${FILENAME%\.*}.txt" && 
+                    x-terminal-emulator -e /usr/local/bin/player.py "$REPLECTURE"/"$FILE"/"${FILENAME%\.*}.txt" &&
+                    espeak -a 200 -v mb-fr1 -s 130 "lecture terminée"
+                    rm -r "$REPLECTURE"/*
+                ;;
+
+                ######## Conversion et lecture du fichier de type doc #######
+                ######## !!!! unoconv génere une alerte car il est déprécié par Python et sera supprimé dans la version 3.12 !!!! ########
+                doc)
+                    espeak -a 200 -v mb-fr1 -s 130 "patientez"
+                    unoconv --doctype=document --format=txt -o "$REPLECTURE"/"$FILE"/"${FILENAME%\.*}.txt" "$CHEMIN"/"$FICHIER" &&
+                    cp "$REPLECTURE"/"$FILE"/"${FILENAME%\.*}.txt" "$CHEMIN"/"${FILENAME%\.*}.txt" &&
+                    x-terminal-emulator -e /usr/local/bin/player.py "$REPLECTURE"/"$FILE"/"${FILENAME%\.*}.txt" &&
+                    espeak -a 200 -v mb-fr1 -s 130 "lecture terminée"
+                    rm -r "$REPLECTURE"/*
+                ;;
+
+                ######## Conversion et lecture du fichier de type txt #######
+                txt)
+                    espeak -a 200 -v mb-fr1 -s 130 "patientez"
+                    cp "$FILEORIGIN" "$REPLECTURE"
+                    x-terminal-emulator -e /usr/local/bin/player.py "$REPLECTURE"/"${FILENAME%\.*}.txt" &&
+                    espeak -a 200 -v mb-fr1 -s 130 "lecture terminée"
+                    rm -r "$REPLECTURE"/*
+                ;;
+
+                ######## Conversion et lecture du fichier de type png #######
+                png)
+                    espeak -a 200 -v mb-fr1 -s 130 "patientez"
+                    mkdir "$REPLECTURE"/"$FILE"
+                    tesseract --tessdata-dir /usr/share/tesseract-ocr/4.00/tessdata/ "$CHEMIN"/"$FICHIER" "$REPLECTURE"/"$FILE"/"$FILENAME" -l fra &&
+                    cp "$REPLECTURE"/"$FILE"/"$FILENAME".txt "$CHEMIN"/"$FILENAME".txt &&
+                    x-terminal-emulator -e /usr/local/bin/player.py "$REPLECTURE"/"$FILE"/"$FILENAME".txt &&
+                    espeak -a 200 -v mb-fr1 -s 130 "lecture terminée"
+                    rm -r "$REPLECTURE"/*
+                ;;
+
+                ######## Conversion et lecture du fichier de type png #######
+                jpg)
+                    espeak -a 200 -v mb-fr1 -s 130 "patientez"
+                    mkdir "$REPLECTURE"/"$FILE"
+                    tesseract --tessdata-dir /usr/share/tesseract-ocr/4.00/tessdata/ "$CHEMIN"/"$FICHIER" "$REPLECTURE"/"$FILE"/"$FILENAME" -l fra &&
+                    cp "$REPLECTURE"/"$FILE"/"$FILENAME".txt "$CHEMIN"/"$FILENAME".txt &&
+                    x-terminal-emulator -e /usr/local/bin/player.py "$REPLECTURE"/"$FILE"/"$FILENAME".txt &&
+                    espeak -a 200 -v mb-fr1 -s 130 "lecture terminée"
+                    rm -r "$REPLECTURE"/*
+                ;;
+
+            esac
+    fi
+
+#### Ré-active la synthèse vocale Orca
+speech-dispatcher
+orca --replace &
+
+exit 0
