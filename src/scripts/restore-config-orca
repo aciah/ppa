@@ -1,0 +1,111 @@
+# Il peut arriver que l'on fasse des modifications hasardeuses sur le lecteur d'écran Orca.
+ " Si rien ne va plus, il vaut mieux relancer la configuration de Orca. Voir ici : https://aciah-linux.org/spip.php?article165
+
+
+Voici ce script:
+
+#!/bin/bash
+
+# Version : 2.0 - 2016
+# Licence : GPL v3
+# Fonction : Restauration Config Orca
+# Maintenance : Christophe L.
+# Shell : bash
+
+# Variables :
+
+ICONS1="/usr/share/pixmaps/orca.svg"
+
+# Fonctions :
+
+stopmbrola(){
+  if [ -n "$(ps -A | grep mbrola)" ] ; then
+	killall -KILL mbrola && sleep 2
+  fi
+
+}
+
+notify(){
+  stopmbrola
+  notify-send -i  "$ICONS" "$TITLE" "$(echo -e "$1")"
+  [ "$scr" = "1" ] && espeak -v $TYPE -s $SPEED -p $PITCH "$TITLE $(echo -e "$1")" | mbrola $VOIX - -.au | aplay 
+  sleep "$2"
+  
+  yad --width=700 --height=250 --center \
+  --window-icon "$ICONS" --image "$ICONS" \
+  --on-top --undecorated \
+  --text-align=center \
+  --title "$TITLE - $1" \
+  --text "<big><big><big>\n\n$TITLE\n\n $(echo -e "$1")\n\n</big></big></big>" \
+  --timeout="$3" \
+  --no-buttons \
+  
+}
+
+
+mbrola
+
+
+##### test et creation dossier ConfigVoix et des fichiers de configurations #####
+
+if [ ! -d $HOME/.local/ConfigVoix/ ] ; then
+     mkdir $HOME/.local/ConfigVoix
+     # Voix feminine
+     TYPE_VOIX=/usr/share/mbrola/fr1/fr1 
+     TYPE_V=mb/mb-fr1 
+     # Voix masculine
+     #TYPE_VOIX=/usr/share/mbrola/fr1/fr1
+     #TYPE_V=mb/mb-fr1
+     SPEED_V="160"
+     PITCH_V="50"
+     echo $TYPE_VOIX > $HOME/.local/ConfigVoix/voix.conf
+     echo $TYPE_V > $HOME/.local/ConfigVoix/type.conf
+     echo $SPEED_V > $HOME/.local/ConfigVoix/speed.conf
+     echo $PITCH_V > $HOME/.local/ConfigVoix/pitch.conf
+fi
+
+if pgrep "orca" > /dev/null; then
+    scr=1
+else
+    scr=0
+fi
+
+cd $HOME/.local/ConfigVoix
+
+##### choix du type de voix à utiliser #####
+
+VOIX=$(cat $HOME/.local/ConfigVoix/voix.conf)
+TYPE=$(cat $HOME/.local/ConfigVoix/type.conf)
+SPEED=$(cat $HOME/.local/ConfigVoix/speed.conf)
+PITCH=$(cat $HOME/.local/ConfigVoix/pitch.conf)
+
+
+# messages
+TITLE="ORCA"
+TEXT="Restauration du lecteur Orca"
+
+###### Notification #######
+
+ICONS=$ICONS1
+notify "$TEXT" "3" "2"
+
+
+if pgrep "orca" > /dev/null; then
+     killall orca &
+     fl=1
+else
+     fl=0
+fi
+killall -u `whoami` speech-dispatcher
+
+sleep 2
+
+cp -vf $HOME/.local/share/orca/user-settings.conf $HOME/.local/share/orca
+
+speech-dispatcher
+
+if [ "$fl" = "1" ] ; then
+    orca --replace &
+fi
+
+exit 0
