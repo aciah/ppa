@@ -1,3 +1,5 @@
+# version d'avril2024
+
 #!/bin/bash
 # script facilitant l'enregistrement d'un document LibreOffice Writer.
 # le script crée le dossier A-attente.
