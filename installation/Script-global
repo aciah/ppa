@@ -1,1 +1,32 @@
+Notre script global, version du 10 décembre 2024 est ici : 
 
+Ce script est très intéressant car il permet une installation simple et rapide qui permet de tester Aciah-Linux. 
+Cependant, si vous souhaitez une démonstration de Aciah-Linux, appelez-nous au 09 77 81 55 98 , 
+nous vous enverrons un lien avec mot de passe (et c’est pas une visio !)
+
+Il faut :
+
+    un ordinateur sur lequel on a déjà installé Linux-Mint 21.3 xfce. 
+    Pensez à y faire les mises à jour et à installer les paquets de langue.
+    le script global que l’on peut télécharger ici : 
+    https://aciah-linux.org/Telecharger/Dernieres-versions/installationACIAH-Mint21-3-2024-12-10.run
+
+Première étape : télécharger le script
+
+    Lancer internet et écrire ceci dans la barre d’adresse :
+    https://aciah-linux.org/Telecharger/Dernieres-versions/installationACIAH-Mint21-3-2024-12-10.run
+    Quand le script s’affiche, faire : Fichier/enregistrer-sous et choisir le dossier Téléchargements.
+
+Deuxième étape : lancer le script
+
+    lancer un terminal
+    écrire : cd   Téléchargements et valider
+    écrire ensuite : bash   installationACIAH-Mint21-3-2024-12-10.run et valider.
+    et c’est parti pour vingt minutes environ.
+
+On vous demandera de répondre oui ou non.
+Si vous répondez NON, vous aurez une version de Aciah-Linux, avec une navigation très simplifiée.
+Si vous répondez OUI, cela installera la version de Aciah-Linux équipée du lecteur d’écran Orca.
+Si vous répondez Quitter, cela arrête l’installation.
+
+Ensuite il y a des personnalisations possibles,
