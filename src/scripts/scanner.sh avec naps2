@@ -1,0 +1,75 @@
+#!/bin/bash
+
+# VERSION 3 avec NAPS2
+# LICENCE : GPL v3
+# MODIFICATIONS : association ACIAH, Gérard Ruau (membre association ACIAH) 05/07/2024 et 06/04/2026
+# MAINTENANCE : <aciah@free.fr>
+# NAME : scanner.sh
+# DESCRIPTION : Script permettant de scanner un document, de le convertir en trois fichiers : fichier.jpg, fichier.txt et fichier.pdf.
+#				L'utilisateur tapera un nom de fichier qui sera repris pour les trois fichiers.
+#				Le même nom sera donné à un dossier qui se trouvera obligatoirement dans le dossier '$HOME/Scan/même_nom_de_fichier'
+#			
+# DEPENDANCES : espeak, pandoc, xdotool, libtiff-tools, naps2
+# RACCOURCIS : Le script se trouve dans $HOME/.local/scripts/scanner.sh
+#	      IL EST OBLIGATOIREMENT LANCÉ PAR LE RACCOURCI SUIVANT : x-terminal-emulator -e /home/aciah/.local/scripts/scanner.sh
+#
+
+
+#### Si le dossier $HOME/Téléchargements/Scan n'existe pas, on le crée
+    if [ ! -d $HOME/Scan ]
+        then
+            mkdir $HOME/Scan
+    fi
+  
+aplay -q /usr/local/share/advl/beep.wav
+sleep 1
+
+#### Indications données à l'utilisateur pour la suite
+echo "Assurez-vous d'avoir bien choisi votre profil."
+sleep 3
+echo "Tapez un nom pour le document à scanner puis frappez la touche Entrée."
+sleep 3
+
+#### Lecture du nom tapé par l'utilisateur et déclaration de la variable "$Scan"
+read Scan
+
+#### Déclaration de la variable "$Repscan" pour la création du dossier '$HOME/Scan/même_nom_de_fichier'
+Repscan="$HOME"/Scan/"$Scan"
+
+#### Si le dossier $HOME/Scan/nom_donné_par_l'utilisateur n'existe pas, on le crée
+    if [ ! -d "$Repscan" ]
+        then
+            mkdir "$Repscan"
+    fi
+
+#### Indications données à l'utilisateur pour la suite
+echo "Trois fichiers seront créés".
+echo "Ils seront placés dans le dossier : "$Repscan", qui sera ouvert."
+sleep 1
+
+#### Indications données à l'utilisateur pour la suite
+echo "Début du scan du document, une minute d'attente"
+sleep 1
+naps2 console e -o "scann.jpg"
+
+mv -v "scann.jpg" "$Repscan"/"$Scan".jpg 
+
+killall orca &>/dev/null
+sleep 1
+killall -9 speech-dispatcher &>/dev/null
+
+#### OCR du fichier jpg et conversion en un fichier.txt
+tesseract --tessdata-dir /usr/share/tesseract-ocr/4.00/tessdata/ "$Repscan"/"$Scan".jpg  "$Repscan"/"$Scan" -l fra &&
+sleep 2
+
+tesseract "$Repscan"/"$Scan".jpg "$Repscan"/"$Scan" pdf
+sleep 2
+
+orca --replace &
+
+echo "Le gestionnaire de fichiers ouvre le dossier : "$Repscan"."
+nohup caja "$Repscan" 2>/dev/null &
+
+aplay -q /usr/local/share/advl/beep.wav
+aplay -q /usr/local/share/advl/beep.wav
+exit 0
